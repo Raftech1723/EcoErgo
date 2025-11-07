@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoErgo - Sillas Ergonómicas Sostenibles</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c5f2d 0%, #4a9d4f 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2c5f2d 0%, #4a9d4f 100%);
+            color: white;
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background: white;
+            color: #2c5f2d;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #2c5f2d;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #2c5f2d;
+            margin-bottom: 1rem;
+        }
+
+        .product-specs {
+            background: #f8f9fa;
+            padding: 4rem 2rem;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .spec-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #4a9d4f;
+        }
+
+        .spec-item h4 {
+            color: #2c5f2d;
+            margin-bottom: 0.5rem;
+        }
+
+        .versions {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .version-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .version-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #dee2e6;
+            transition: all 0.3s;
+        }
+
+        .version-card:hover {
+            border-color: #4a9d4f;
+            transform: scale(1.05);
+        }
+
+        .version-card.premium {
+            background: linear-gradient(135deg, #2c5f2d 0%, #4a9d4f 100%);
+            color: white;
+        }
+
+        .colors {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .color-dot {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .registration-form {
+            background: linear-gradient(135deg, #2c5f2d 0%, #4a9d4f 100%);
+            padding: 4rem 2rem;
+            color: white;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 3rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .testimonials {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+            overflow: hidden;
+        }
+
+        .testimonial-slider-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-grid {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            min-width: 300px;
+            max-width: 300px;
+            flex-shrink: 0;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .testimonial-author {
+            color: #2c5f2d;
+            font-weight: bold;
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .slider-btn {
+            background: #2c5f2d;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .slider-btn:hover {
+            background: #4a9d4f;
+            transform: scale(1.1);
+        }
+
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: #2c5f2d;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 1024px) {
+            .testimonial-card {
+                min-width: 300px;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-card {
+                min-width: 280px;
+                max-width: 280px;
+            }
+        }
+
+        .social-section {
+            padding: 3rem 2rem;
+            text-align: center;
+            background: white;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .social-link:hover {
+            transform: scale(1.2);
+        }
+
+        .social-link.linkedin { background: #0077b5; }
+        .social-link.facebook { background: #1877f2; }
+        .social-link.tiktok { background: #000000; }
+        .social-link.youtube { background: #ff0000; }
+
+        .footer {
+            background: #2c5f2d;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">🌱 EcoErgo</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#producto">Producto</a></li>
+                <li><a href="#versiones">Versiones</a></li>
+                <li><a href="#registro">Registro</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <h1>EcoErgo: Ergonomía Sostenible para tu Oficina</h1>
+        <p>La primera silla ergonómica fabricada con plásticos reciclados</p>
+        <p>Comodidad + Sostenibilidad + Accesibilidad</p>
+        <button class="cta-button" onclick="document.getElementById('registro').scrollIntoView({behavior: 'smooth'})">
+            Regístrate Ahora
+        </button>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">¿Por qué elegir EcoErgo?</h2>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">♻️</div>
+                <h3>100% Sostenible</h3>
+                <p>Fabricada con plásticos reciclados (PET, PP, PEAD), reduciendo el impacto ambiental y dando nueva vida a los residuos.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🪑</div>
+                <h3>Diseño Ergonómico</h3>
+                <p>Soporte lumbar y cervical ajustable, altura regulable e inclinación hasta 135° para tu máxima comodidad.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3>Para tu Empresa</h3>
+                <p>Mejora el bienestar de tus trabajadores con mobiliario de calidad a un precio accesible.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔧</div>
+                <h3>Modular y Reparable</h3>
+                <p>Diseño inteligente que permite reparaciones fáciles y extensión de la vida útil del producto.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="producto" class="product-specs">
+        <div class="container">
+            <h2 class="section-title">Especificaciones Técnicas</h2>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <h4>📏 Dimensiones</h4>
+                    <p>110 cm (alto) x 60 cm (ancho) x 60 cm (profundidad)</p>
+                </div>
+                <div class="spec-item">
+                    <h4>⚖️ Peso y Capacidad</h4>
+                    <p>12 kg | Soporta hasta 120 kg</p>
+                </div>
+                <div class="spec-item">
+                    <h4>🎨 Materiales</h4>
+                    <p>Polímeros reciclados (PET, PP, PEAD), base reforzada y tapizado de fibras plásticas</p>
+                </div>
+                <div class="spec-item">
+                    <h4>⚙️ Funcionalidades</h4>
+                    <p>Altura regulable, inclinación 135°, descansabrazos ajustables, base de 5 ruedas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="versiones" class="versions">
+        <h2 class="section-title">Versiones Disponibles</h2>
+        <div class="version-cards">
+            <div class="version-card">
+                <h3>Estándar</h3>
+                <p style="font-size: 1.2rem; margin: 1rem 0;">Perfecta para uso diario</p>
+                <p>Incluye todas las funcionalidades ergonómicas básicas con materiales reciclados de alta calidad</p>
+                <div class="colors">
+                    <div class="color-dot" style="background: #000000;" title="Negro"></div>
+                    <div class="color-dot" style="background: #808080;" title="Gris"></div>
+                    <div class="color-dot" style="background: #1e90ff;" title="Azul"></div>
+                    <div class="color-dot" style="background: #2ecc71;" title="Verde"></div>
+                </div>
+            </div>
+            <div class="version-card premium">
+                <h3>Premium</h3>
+                <p style="font-size: 1.2rem; margin: 1rem 0;">Máximo confort</p>
+                <p>Mayor acolchado + Reposacabezas ergonómico + Acabados superiores</p>
+                <div class="colors">
+                    <div class="color-dot" style="background: #000000;" title="Negro"></div>
+                    <div class="color-dot" style="background: #808080;" title="Gris"></div>
+                    <div class="color-dot" style="background: #1e90ff;" title="Azul"></div>
+                    <div class="color-dot" style="background: #2ecc71;" title="Verde"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="registro" class="registration-form">
+        <h2 class="section-title" style="color: white;">Regístrate y Sé Parte del Cambio</h2>
+        <div class="form-container">
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre Completo *</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="empresa">Empresa</label>
+                    <input type="text" id="empresa" name="empresa">
+                </div>
+                <div class="form-group">
+                    <label for="cargo">Cargo</label>
+                    <input type="text" id="cargo" name="cargo">
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono">
+                </div>
+                <div class="form-group">
+                    <label for="interes">¿Qué te interesa?</label>
+                    <select id="interes" name="interes">
+                        <option value="actualizaciones">Recibir actualizaciones</option>
+                        <option value="piloto">Participar en prueba piloto</option>
+                        <option value="preventa">Descuento de preventa</option>
+                        <option value="todos">Todas las anteriores</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="comentarios">Comentarios o Sugerencias</label>
+                    <textarea id="comentarios" name="comentarios"></textarea>
+                </div>
+                <button type="submit" class="cta-button" style="width: 100%; background: white; color: #2c5f2d;">
+                    Enviar Registro
+                </button>
+                <div id="successMessage" class="success-message">
+                    ¡Gracias por registrarte! Te contactaremos pronto con más información sobre EcoErgo.
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2 class="section-title">Lo que dicen nuestros colaboradores</h2>
+        <div class="testimonial-slider-container">
+            <div class="testimonial-grid" id="testimonialSlider">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Una iniciativa brillante que combina sostenibilidad con funcionalidad. Esperamos poder equipar nuestras oficinas con EcoErgo."</p>
+                    <p class="testimonial-author">- María García, Gerente de RRHH de EcoEdge</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"El diseño ergonómico y el compromiso ambiental hacen de EcoErgo la solución perfecta para empresas responsables."</p>
+                    <p class="testimonial-author">- Carlos Mendoza, Director Administrativo de Elementum Energy</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Finalmente una silla ergonómica accesible y sostenible. El futuro del mobiliario de oficina está aquí."</p>
+                    <p class="testimonial-author">- Ana Torres, Emprendedora de PureFlow</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Nuestros empleados han notado la diferencia desde que consideramos implementar mobiliario ergonómico. EcoErgo es justo lo que necesitábamos."</p>
+                    <p class="testimonial-author">- Roberto Sánchez, Gerente General de SyncHealth</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Como empresa comprometida con el medio ambiente, EcoErgo representa exactamente nuestros valores. Calidad y responsabilidad juntas."</p>
+                    <p class="testimonial-author">- Laura Vega, Coordinadora de Sostenibilidad de BiomeBrick</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"La combinación de precio accesible y materiales reciclados es perfecta para PyMEs como la nuestra que buscan crecer responsablemente."</p>
+                    <p class="testimonial-author">- Miguel Ángel Rojas, Fundador de Startup Tech</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Invertir en la salud de nuestros trabajadores es prioritario. EcoErgo ofrece ergonomía real sin comprometer el presupuesto."</p>
+                    <p class="testimonial-author">- Patricia Flores, Jefa de Operaciones de LexLogic</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"El diseño modular y reparable es un plus enorme. Ya no tendremos que desechar sillas completas por pequeñas fallas."</p>
+                    <p class="testimonial-author">- Jorge Castillo, Gerente de Compras de CyberCrest</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Estamos orgullosos de ser parte de este proyecto piloto. Nuestro equipo está ansioso por probar las sillas EcoErgo."</p>
+                    <p class="testimonial-author">- Daniela Morales, CEO de Agencia Creativa</p>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="slider-btn" id="prevBtn">‹</button>
+                <button class="slider-btn" id="nextBtn">›</button>
+            </div>
+            <div class="slider-dots" id="sliderDots"></div>
+        </div>
+    </section>
+
+    <section class="social-section">
+        <h2 class="section-title">Síguenos en Redes Sociales</h2>
+        <p>Únete a nuestra comunidad y mantente informado sobre el lanzamiento de EcoErgo</p>
+        <div class="social-links">
+            <a href="#" class="social-link linkedin" title="LinkedIn">in</a>
+            <a href="#" class="social-link facebook" title="Facebook">f</a>
+            <a href="#" class="social-link tiktok" title="TikTok">♪</a>
+            <a href="#" class="social-link youtube" title="YouTube">▶</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2025 EcoErgo - Sillas Ergonómicas Sostenibles</p>
+        <p>Lima Metropolitana, Perú | Ergonomía + Sostenibilidad + Accesibilidad</p>
+    </footer>
+
+    <script>
+        // Formulario de registro
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nombre = document.getElementById('nombre').value;
+            const empresa = document.getElementById('empresa').value;
+            const cargo = document.getElementById('cargo').value;
+            const comentarios = document.getElementById('comentarios').value;
+            
+            const formData = {
+                nombre: nombre,
+                email: document.getElementById('email').value,
+                empresa: empresa,
+                cargo: cargo,
+                telefono: document.getElementById('telefono').value,
+                interes: document.getElementById('interes').value,
+                comentarios: comentarios,
+                fecha: new Date().toLocaleString('es-PE')
+            };
+            
+            console.log('Datos del registro:', formData);
+            
+            // Si hay comentarios, agregarlos a los testimonios
+            if (comentarios.trim() !== '') {
+                const slider = document.getElementById('testimonialSlider');
+                
+                const newTestimonial = document.createElement('div');
+                newTestimonial.classList.add('testimonial-card');
+                
+                const testimonialText = document.createElement('p');
+                testimonialText.classList.add('testimonial-text');
+                testimonialText.textContent = `"${comentarios}"`;
+                
+                const testimonialAuthor = document.createElement('p');
+                testimonialAuthor.classList.add('testimonial-author');
+                
+                // Construir el texto del autor con nombre, cargo y empresa
+                let authorText = `- ${nombre}`;
+                if (cargo) {
+                    authorText += `, ${cargo}`;
+                }
+                if (empresa) {
+                    authorText += empresa && cargo ? ` de ${empresa}` : `, ${empresa}`;
+                }
+                
+                testimonialAuthor.textContent = authorText;
+                
+                newTestimonial.appendChild(testimonialText);
+                newTestimonial.appendChild(testimonialAuthor);
+                
+                slider.appendChild(newTestimonial);
+                
+                // Reinicializar el slider con el nuevo testimonio
+                initializeSlider();
+            }
+            
+            document.getElementById('successMessage').style.display = 'block';
+            
+            this.reset();
+            
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        });
+
+        // Navegación suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Variables globales del slider
+        let currentIndex = 0;
+        let cardsPerView = 3;
+        let autoSlideInterval;
+
+        // Función para inicializar el slider
+        function initializeSlider() {
+            const slider = document.getElementById('testimonialSlider');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.getElementById('sliderDots');
+            const testimonialCards = document.querySelectorAll('.testimonial-card');
+            
+            // Detectar cantidad de tarjetas visibles según el ancho de pantalla
+            function updateCardsPerView() {
+                if (window.innerWidth <= 768) {
+                    cardsPerView = 1;
+                } else if (window.innerWidth <= 1024) {
+                    cardsPerView = 2;
+                } else {
+                    cardsPerView = 3;
+                }
+            }
+            
+            const totalSlides = Math.ceil(testimonialCards.length / cardsPerView);
+            
+            // Crear dots de navegación
+            function createDots() {
+                dotsContainer.innerHTML = '';
+                for (let i = 0; i < totalSlides; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    if (i === currentIndex) dot.classList.add('active');
+                    dot.addEventListener('click', () => goToSlide(i));
+                    dotsContainer.appendChild(dot);
+                }
+            }
+            
+            // Actualizar dots activos
+            function updateDots() {
+                const dots = document.querySelectorAll('.dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+            
+            // Ir a un slide específico
+            function goToSlide(index) {
+                currentIndex = index;
+                const cardWidth = testimonialCards[0].offsetWidth;
+                const gap = 32;
+                const offset = -(currentIndex * cardsPerView * (cardWidth + gap));
+                slider.style.transform = `translateX(${offset}px)`;
+                updateDots();
+            }
+            
+            // Limpiar listeners anteriores
+            const newPrevBtn = prevBtn.cloneNode(true);
+            const newNextBtn = nextBtn.cloneNode(true);
+            prevBtn.parentNode.replaceChild(newPrevBtn, prevBtn);
+            nextBtn.parentNode.replaceChild(newNextBtn, nextBtn);
+            
+            // Botón anterior
+            newPrevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalSlides - 1;
+                goToSlide(currentIndex);
+            });
+            
+            // Botón siguiente
+            newNextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex < totalSlides - 1) ? currentIndex + 1 : 0;
+                goToSlide(currentIndex);
+            });
+            
+            // Limpiar intervalo anterior si existe
+            if (autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+            }
+            
+            // Auto-slide cada 8 segundos
+            autoSlideInterval = setInterval(() => {
+                currentIndex = (currentIndex < totalSlides - 1) ? currentIndex + 1 : 0;
+                goToSlide(currentIndex);
+            }, 8000);
+            
+            // Pausar auto-slide al hacer hover
+            slider.addEventListener('mouseenter', () => {
+                clearInterval(autoSlideInterval);
+            });
+            
+            slider.addEventListener('mouseleave', () => {
+                autoSlideInterval = setInterval(() => {
+                    currentIndex = (currentIndex < totalSlides - 1) ? currentIndex + 1 : 0;
+                    goToSlide(currentIndex);
+                }, 8000);
+            });
+            
+            // Recalcular al cambiar tamaño de ventana
+            window.addEventListener('resize', () => {
+                updateCardsPerView();
+                createDots();
+                goToSlide(0);
+            });
+            
+            // Inicializar
+            updateCardsPerView();
+            createDots();
+            goToSlide(currentIndex);
+        }
+
+        // Inicializar slider al cargar la página
+        initializeSlider();
+    </script>
+</body>
+</html>
